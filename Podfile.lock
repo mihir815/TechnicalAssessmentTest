@@ -1,7 +1,10 @@
 PODS:
   - Alamofire (5.4.1)
+  - AZTabBar (1.4.2):
+    - EasyNotificationBadge
   - BFKit-Swift (6.0.1)
   - DZNEmptyDataSet (1.8.1)
+  - EasyNotificationBadge (1.2.5)
   - Firebase/Analytics (7.8.1):
     - Firebase/Core
   - Firebase/Core (7.8.1):
@@ -167,6 +170,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - AZTabBar
   - BFKit-Swift
   - DZNEmptyDataSet
   - Firebase/Analytics
@@ -187,8 +191,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AZTabBar
     - BFKit-Swift
     - DZNEmptyDataSet
+    - EasyNotificationBadge
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -219,8 +225,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  AZTabBar: e4d5a1f5f3fc7be044d532b7a704d303cff9af11
   BFKit-Swift: a91367e548f995ef9804956e255912fdbf0d91a2
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EasyNotificationBadge: a3ebbcb1de0c0558e102e954380c75801f352702
   Firebase: d59ad4129167f9f0d2a4f6c1f0c462254b6002c8
   FirebaseAnalytics: 3b98b563d7d64c07900511198b4805cfd9f9f61c
   FirebaseCore: 049029df3096e5c118917029be7da75ee16f3b1b
@@ -249,6 +257,6 @@ SPEC CHECKSUMS:
   "UIAlertController+Blocks": 80e28b92523fb58aba4d1bccec013d5a0b0bddb2
   "UIAlertView+Blocks": a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: 4d11584923df6a3b89a31fbd0467c8bd3d1f7821
+PODFILE CHECKSUM: de120ee5a6419b8bf83c4d99390f58b38aa4ce97
 
 COCOAPODS: 1.10.0

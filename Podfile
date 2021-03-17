@@ -24,4 +24,5 @@ target 'TechnicalAssessmentTest' do
   pod 'DZNEmptyDataSet'
   pod 'RMUniversalAlert'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'AZTabBar'
 end

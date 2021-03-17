@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import DZNEmptyDataSet
 
-class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+class FavouritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
 {
     var postDataArray : NSMutableArray! = NSMutableArray()
     
@@ -55,7 +55,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         let navigationBar = self.navigationController?.navigationBar
         navigationBar?.tintColor = UIColor.white
         navigationBar?.setNavigationBarProperties(navigationBar: navigationBar!)
-        self.navigationItem.title = "Posts"
+        self.navigationItem.title = "Favourites"
         
         let rightBarButton = UIBarButtonItem()
         rightBarButton.target = self
@@ -178,7 +178,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString?
     {
-        let txt = "Posts"
+        let txt = "Favourites"
         
         let attrs1 = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: Utilities.dynamicFontSizeForIphone(fontSize: 16.0)) , NSAttributedString.Key.foregroundColor : Constants.color.colorPrimary]
         let attributedString1 = NSMutableAttributedString(string:"\(txt)", attributes:attrs1 as [NSAttributedString.Key : Any])

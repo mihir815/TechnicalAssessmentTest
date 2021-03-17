@@ -45,6 +45,12 @@ class Constants: NSObject {
         static var Dashboard = "Dashboard"
     }
     
+    struct images
+    {
+        static var posts = UIImage(named: "posts")
+        static var favourites = UIImage(named: "favourites")
+    }
+    
     struct color{
         static var colorPrimary = UIColor(string: "#2e5902")
         static var colorGreenLight = UIColor(string: "#3a7219")

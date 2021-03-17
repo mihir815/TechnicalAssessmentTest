@@ -212,9 +212,9 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
         self.view.endEditing(true)
         Defaults[\.isLogin] = true
         
-        let viewController =  appDelegate.myStoryboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
+        let tabViewController = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
 
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.pushViewController(tabViewController, animated: false)
      }
 }
 

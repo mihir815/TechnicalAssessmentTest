@@ -59,6 +59,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQJ-bP-Pqh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="735" y="344"/>
+        </scene>
+        <!--FavouritesViewController-->
+        <scene sceneID="Yvo-Wq-ZLj">
+            <objects>
+                <viewController storyboardIdentifier="FavouritesViewController" id="rNe-jW-z2v" userLabel="FavouritesViewController" customClass="FavouritesViewController" customModule="TechnicalAssessmentTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nh0-RD-aIL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Dd-FG-up2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Vk-76-sY7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mHC-L5-ybS"/>
+                    <connections>
+                        <outlet property="tableView" destination="9Dd-FG-up2" id="SEA-4f-6zO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Szq-9a-L80" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1406" y="343"/>
+        </scene>
+        <!--TabBarViewController-->
+        <scene sceneID="gti-Rw-gvP">
+            <objects>
+                <viewController storyboardIdentifier="TabBarViewController" id="RIa-mD-ENq" userLabel="TabBarViewController" customClass="TabBarViewController" customModule="TechnicalAssessmentTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nbh-g5-4Uh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="kJV-AD-KyK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uDl-JS-qz5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQ3-lo-0AJ" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="71" y="345"/>
         </scene>
     </scenes>

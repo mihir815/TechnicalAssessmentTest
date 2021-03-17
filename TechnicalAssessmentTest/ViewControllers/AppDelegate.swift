@@ -33,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         if(Defaults.isLogin == true)
         {
-            let dashboardViewController = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
-            let navigationController = UINavigationController(rootViewController: dashboardViewController)
+            let tabViewController = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            let navigationController = UINavigationController(rootViewController: tabViewController)
             self.window?.rootViewController = navigationController
         }
         else{
