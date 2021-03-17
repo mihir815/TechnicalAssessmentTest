@@ -22,11 +22,11 @@ class Constants: NSObject {
         
         struct production
         {
-            static var BASE_URL = "TFbCzui9JSJl6IOu14FDN8NnK2jlieX5"
+            static var BASE_URL = "https://jsonplaceholder.typicode.com"
         }
         struct staging
         {
-            static var BASE_URL = "VsapucD4ZMun6wbxcNH4aZ6S28kpDV74"
+            static var BASE_URL = "https://jsonplaceholder.typicode.com"
         }
         
         struct current
@@ -35,14 +35,14 @@ class Constants: NSObject {
         }
     }
     
+    struct API
+    {
+        static var posts = "/posts"
+    }
+    
     struct GoogleAnalytics {
         static var Login = "Login"
         static var Dashboard = "Dashboard"
-    }
-    
-    struct API
-    {
-        static var login = "/oauth/token"
     }
     
     struct color{

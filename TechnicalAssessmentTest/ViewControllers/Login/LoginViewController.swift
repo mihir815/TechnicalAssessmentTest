@@ -209,6 +209,7 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     
      @objc func onClickSubmit()
      {
+        self.view.endEditing(true)
         Defaults[\.isLogin] = true
         
         let viewController =  appDelegate.myStoryboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
