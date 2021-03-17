@@ -7,6 +7,10 @@
 
 import UIKit
 import CoreData
+import Firebase
+import SVProgressHUD
+import SwiftyUserDefaults
+import IQKeyboardManager
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -16,6 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        SVProgressHUD.setDefaultMaskType(.black)
+        
+        IQKeyboardManager.shared().isEnabled = true
+        IQKeyboardManager.shared().enableDebugging = false
+        IQKeyboardManager.shared().keyboardDistanceFromTextField = 60.0
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.myStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if(Defaults.isLogin == true)
+        {
+            let dashboardViewController = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
+            let navigationController = UINavigationController(rootViewController: dashboardViewController)
+            self.window?.rootViewController = navigationController
+        }
+        else{
+            let viewController =  myStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let navigationController = UINavigationController(rootViewController: viewController)
+            self.window?.rootViewController = navigationController
+        }
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
