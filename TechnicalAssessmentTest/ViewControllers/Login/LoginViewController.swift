@@ -39,8 +39,7 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
         addPassword()
         addSubmitButton()
         
-        txtEmail.text = ""
-        txtPassword.text = ""
+        self.checkLoginValidations()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -57,6 +56,9 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
         navigationBar?.tintColor = UIColor.white
         navigationBar?.setNavigationBarProperties(navigationBar: navigationBar!)
         self.navigationItem.title = "Login"
+        
+        txtEmail.text = ""
+        txtPassword.text = ""
     }
     
     // MARK: -
@@ -167,6 +169,38 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
         scrollView.contentSize = CGSize(width: self.scrollView.frame.size.width, height: y_position)
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if let text = textField.text as NSString?
+        {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            print("txtAfterUpdate ==> \(txtAfterUpdate)")
+            
+            Utilities.run(after: 0.1) {
+                self.checkLoginValidations()
+            }
+        }
+        return true
+    }
+    
+    func checkLoginValidations()
+    {
+        if(txtEmail.text?.isEmpty == false && txtPassword.text?.isEmpty == false)
+        {
+            if (txtEmail.text?.isEmail() == true)
+            {
+                let passwordString = txtPassword.text
+                
+                if (passwordString!.length >= 8 && passwordString!.length <= 15)
+                {
+                    btnSubmit.isEnabled = true
+                    return
+                }
+            }
+        }
+        btnSubmit.isEnabled = false
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
@@ -175,9 +209,11 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     
      @objc func onClickSubmit()
      {
+        Defaults[\.isLogin] = true
+        
         let viewController =  appDelegate.myStoryboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
 
-        self.navigationController?.pushViewController(viewController, animated: false)
+        self.navigationController?.pushViewController(viewController, animated: true)
      }
 }
 

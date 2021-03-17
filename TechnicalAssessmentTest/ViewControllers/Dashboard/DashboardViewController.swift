@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
 class DashboardViewController: UIViewController
 {
@@ -32,6 +33,28 @@ class DashboardViewController: UIViewController
         navigationBar?.tintColor = UIColor.white
         navigationBar?.setNavigationBarProperties(navigationBar: navigationBar!)
         self.navigationItem.title = "Dashboard"
+        
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.target = self
+        rightBarButton.action = #selector(onClickLogout)
+        rightBarButton.title = "Logout"
+        rightBarButton.style = .done
+        rightBarButton.tintColor = Constants.color.colorWhite
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    // MARK: -
+    // MARK: Buttons Click Events
+    
+    @objc func onClickLogout()
+    {
+        Defaults[\.isLogin] = false
+        
+        let viewController =  appDelegate.myStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        appDelegate.window?.rootViewController = navigationController
     }
 }
 
