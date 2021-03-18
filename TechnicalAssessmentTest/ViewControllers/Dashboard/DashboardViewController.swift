@@ -11,9 +11,11 @@ import Alamofire
 import SwiftyJSON
 import DZNEmptyDataSet
 
-class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate
 {
     var postDataArray : NSMutableArray! = NSMutableArray()
+    var filteredArray : NSMutableArray! = NSMutableArray()
+    
     
     // cell reuse id (cells that scroll out of view can be reused)
     let cellReuseIdentifier = "cell"
@@ -38,6 +40,9 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorInset = UIEdgeInsets.zero
+        
+        tableView.tableFooterView = UIView()
 
         self.getPostDataFromAPI()
     }
@@ -87,6 +92,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
             Utilities.hideActivityIndicator()
             
             self.postDataArray.removeAllObjects()
+            self.filteredArray.removeAllObjects()
             
             if(statusCode == 200)
             {
@@ -117,6 +123,8 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                         ($0 as! PostDataModel).id < ($1 as! PostDataModel).id
                      }
                     self.postDataArray.addObjects(from: sortedArray)
+                    self.filteredArray.addObjects(from: sortedArray)
+                    self.initializeSearch()
                 }
                 self.tableView.emptyDataSetSource = self
                 self.tableView.emptyDataSetDelegate = self
@@ -135,13 +143,54 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
+    func initializeSearch()
+    {
+        let searchBar = UISearchBar()
+        searchBar.frame = CGRect(x: 0, y: 0, width: Utilities.getWidth(width: 320), height: Utilities.getHeight(height: 44))
+        searchBar.delegate = self
+        searchBar.showsCancelButton = false
+        searchBar.searchBarStyle = .default
+        searchBar.placeholder = "Search a post here..."
+        
+        self.tableView.tableHeaderView = searchBar
+    }
+    
+    // MARK: -
+    // MARK: SearchBar Delegate / DataSource Methods
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let searchString = searchText.removeExtraSpaces()
+        print(searchString)
+            
+        if(searchString.length > 0)
+        {
+            let tempFilteredArray = self.postDataArray.filter { ($0 as! PostDataModel).title.localizedCaseInsensitiveContains(searchString) }
+            
+            self.filteredArray.removeAllObjects()
+            self.filteredArray.addObjects(from: tempFilteredArray)
+        }
+        else
+        {
+            self.filteredArray.removeAllObjects()
+            self.filteredArray.addObjects(from: self.postDataArray as! [Any])
+        }
+        
+        self.tableView.reloadData()
+        self.tableView.reloadEmptyDataSet()
+    }
+    
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.postDataArray.count
+        return self.filteredArray.count
     }
 
     // create a cell for each table view row
@@ -151,7 +200,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell:UITableViewCell = UITableViewCell(style: .subtitle,
                                                    reuseIdentifier: cellReuseIdentifier)
         
-        let tempPostModel : PostDataModel = self.postDataArray.object(at: indexPath.row) as! PostDataModel
+        let tempPostModel : PostDataModel = self.filteredArray.object(at: indexPath.row) as! PostDataModel
         
         let bgColorView = UIView()
         bgColorView.backgroundColor = Constants.color.colorPrimary.withAlphaComponent(0.2)
