@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="735" y="344"/>
         </scene>
-        <!--FavouritesViewController-->
+        <!--FavoritesViewController-->
         <scene sceneID="Yvo-Wq-ZLj">
             <objects>
-                <viewController storyboardIdentifier="FavouritesViewController" id="rNe-jW-z2v" userLabel="FavouritesViewController" customClass="FavouritesViewController" customModule="TechnicalAssessmentTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritesViewController" id="rNe-jW-z2v" userLabel="FavoritesViewController" customClass="FavoritesViewController" customModule="TechnicalAssessmentTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nh0-RD-aIL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

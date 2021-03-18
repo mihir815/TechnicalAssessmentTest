@@ -10,12 +10,14 @@ import SwiftyUserDefaults
 import Alamofire
 import SwiftyJSON
 import DZNEmptyDataSet
+import RxSwift
+import RxCocoa
 
 class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate
 {
     var postDataArray : NSMutableArray! = NSMutableArray()
     var filteredArray : NSMutableArray! = NSMutableArray()
-    
+    var searchBar = UISearchBar()
     
     // cell reuse id (cells that scroll out of view can be reused)
     let cellReuseIdentifier = "cell"
@@ -23,6 +25,8 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     // don't forget to hook this up from the storyboard
     @IBOutlet var tableView: UITableView!
 
+    let disposeBag = DisposeBag()
+    
     // MARK: -
     // MARK: Controller Lifecycle Methods
     
@@ -145,7 +149,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func initializeSearch()
     {
-        let searchBar = UISearchBar()
+        searchBar = UISearchBar()
         searchBar.frame = CGRect(x: 0, y: 0, width: Utilities.getWidth(width: 320), height: Utilities.getHeight(height: 44))
         searchBar.delegate = self
         searchBar.showsCancelButton = false
@@ -166,22 +170,34 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         let searchString = searchText.removeExtraSpaces()
         print(searchString)
-            
-        if(searchString.length > 0)
-        {
-            let tempFilteredArray = self.postDataArray.filter { ($0 as! PostDataModel).title.localizedCaseInsensitiveContains(searchString) }
-            
-            self.filteredArray.removeAllObjects()
-            self.filteredArray.addObjects(from: tempFilteredArray)
-        }
-        else
-        {
-            self.filteredArray.removeAllObjects()
-            self.filteredArray.addObjects(from: self.postDataArray as! [Any])
-        }
+        
+        let tempDataArray = self.filteredDataArray(with: self.postDataArray, query: searchString)
+                    self.filteredArray.removeAllObjects()
+        self.filteredArray.addObjects(from: tempDataArray as! [Any])
         
         self.tableView.reloadData()
         self.tableView.reloadEmptyDataSet()
+    }
+    
+//    func bindViewModel(){
+//        let query = searchBar.rx.text
+//            .orEmpty
+//            .distinctUntilChanged()
+//
+//        Observable.combineLatest(self.postDataArray, query) { [unowned self] (allContacts, query) -> NSMutableArray in
+//                return self.filteredContacts(with: allContacts, query: query)
+//            }
+//            .bind(to: tableView.rx.items(dataSource: dataSource))
+//            .disposed(by: disposeBag)
+//    }
+    
+    func filteredDataArray(with allPosts: NSMutableArray, query: String) -> NSMutableArray {
+        guard !query.isEmpty else { return allPosts }
+
+        let filteredContacts: NSMutableArray = NSMutableArray()
+        let tempFilteredArray = allPosts.filter { ($0 as! PostDataModel).title.localizedCaseInsensitiveContains(query) }
+        filteredContacts.addObjects(from: tempFilteredArray)
+        return filteredContacts
     }
     
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		185850BA2602CBE3002E5655 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850B82602CBE3002E5655 /* TabBarViewController.swift */; };
-		185850BB2602CBE3002E5655 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850B92602CBE3002E5655 /* FavouritesViewController.swift */; };
+		185850BB2602CBE3002E5655 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850B92602CBE3002E5655 /* FavoritesViewController.swift */; };
 		185B73D42602A4E8008A3519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B73D32602A4E8008A3519 /* AppDelegate.swift */; };
 		185B73D82602A4E8008A3519 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B73D72602A4E8008A3519 /* LoginViewController.swift */; };
 		185B73DB2602A4E8008A3519 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185B73D92602A4E8008A3519 /* Main.storyboard */; };
@@ -29,7 +29,7 @@
 /* Begin PBXFileReference section */
 		13A571446F041BB0DD26B381 /* Pods-TechnicalAssessmentTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalAssessmentTest.release.xcconfig"; path = "Target Support Files/Pods-TechnicalAssessmentTest/Pods-TechnicalAssessmentTest.release.xcconfig"; sourceTree = "<group>"; };
 		185850B82602CBE3002E5655 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		185850B92602CBE3002E5655 /* FavouritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		185850B92602CBE3002E5655 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		185B73D02602A4E8008A3519 /* TechnicalAssessmentTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TechnicalAssessmentTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185B73D32602A4E8008A3519 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		185B73D72602A4E8008A3519 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -134,8 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				185850B82602CBE3002E5655 /* TabBarViewController.swift */,
-				185850B92602CBE3002E5655 /* FavouritesViewController.swift */,
 				18F622872602B0C5005B0143 /* DashboardViewController.swift */,
+				185850B92602CBE3002E5655 /* FavoritesViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185850BB2602CBE3002E5655 /* FavouritesViewController.swift in Sources */,
+				185850BB2602CBE3002E5655 /* FavoritesViewController.swift in Sources */,
 				18F622EF2602B3F1005B0143 /* Utilities.swift in Sources */,
 				18F622EE2602B3F1005B0143 /* Constants.swift in Sources */,
 				185850BA2602CBE3002E5655 /* TabBarViewController.swift in Sources */,

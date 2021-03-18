@@ -41,7 +41,7 @@ class TabBarViewController: UIViewController, AZTabBarDelegate {
         let v2 = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "DashboardViewController") as! DashboardViewController
         //let v3 = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "InstallWebViewController") as! InstallWebViewController
         
-        let v3 = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "FavouritesViewController") as! FavouritesViewController
+        let v3 = appDelegate.myStoryboard.instantiateViewController(withIdentifier: "FavoritesViewController") as! FavoritesViewController
         
         let vc2 = UINavigationController(rootViewController: v2)
         let vc3 = UINavigationController(rootViewController: v3)
@@ -50,7 +50,7 @@ class TabBarViewController: UIViewController, AZTabBarDelegate {
         AZTabBarC.setViewController(vc3, atIndex: 1)
         
         AZTabBarC.setTitle("Posts".uppercased(), atIndex: 0)
-        AZTabBarC.setTitle("Favourites".uppercased(), atIndex: 1)
+        AZTabBarC.setTitle("Favorites".uppercased(), atIndex: 1)
         
         AZTabBarC.font = UIFont.systemFont(ofSize: Utilities.dynamicFontSizeForIphone(fontSize: 9.0))
         
