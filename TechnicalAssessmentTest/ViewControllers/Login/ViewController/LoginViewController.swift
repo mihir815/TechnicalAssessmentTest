@@ -22,7 +22,6 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     var txtPassword: SkyFloatingLabelTextField!
     var btnSubmit: MDCButton!
     var btnForgotPassword: MDCButton!
-   
     var y_position : CGFloat = 0
     
     // MARK: -
@@ -173,9 +172,6 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     {
         if let text = textField.text as NSString?
         {
-            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
-            print("txtAfterUpdate ==> \(txtAfterUpdate)")
-            
             Utilities.run(after: 0.1) {
                 self.checkLoginValidations()
             }
@@ -185,20 +181,18 @@ class LoginViewController: UIViewController, UITextViewDelegate, UITextFieldDele
     
     func checkLoginValidations()
     {
-        if(txtEmail.text?.isEmpty == false && txtPassword.text?.isEmpty == false)
-        {
-            if (txtEmail.text?.isEmail() == true)
+        btnSubmit.isEnabled = false
+        
+        let loginViewModel : LoginViewModel = LoginViewModel(email: txtEmail.text!, password: txtPassword.text!)
+        loginViewModel.validateFields { (isValidated) in
+            if(isValidated == true)
             {
-                let passwordString = txtPassword.text
-                
-                if (passwordString!.length >= 8 && passwordString!.length <= 15)
-                {
-                    btnSubmit.isEnabled = true
-                    return
-                }
+                btnSubmit.isEnabled = true
+            }
+            else{
+                btnSubmit.isEnabled = false
             }
         }
-        btnSubmit.isEnabled = false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool

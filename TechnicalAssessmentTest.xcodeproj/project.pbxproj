@@ -66,6 +66,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18502AB42613531F00C761C6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				185B73D72602A4E8008A3519 /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		18502AB62613532D00C761C6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				18502AAE26134BB800C761C6 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18502AB82613533800C761C6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				18502AB126134CD900C761C6 /* DashboardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18502ABA2613533F00C761C6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				185850B82602CBE3002E5655 /* TabBarViewController.swift */,
+				18F622872602B0C5005B0143 /* DashboardViewController.swift */,
+				185850B92602CBE3002E5655 /* FavoritesViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		185B73C72602A4E8008A3519 = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +163,8 @@
 		18F6228D2602B10E005B0143 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				185B73D72602A4E8008A3519 /* LoginViewController.swift */,
+				18502AB62613532D00C761C6 /* ViewModel */,
+				18502AB42613531F00C761C6 /* ViewController */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -137,9 +172,8 @@
 		18F6228E2602B113005B0143 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				185850B82602CBE3002E5655 /* TabBarViewController.swift */,
-				18F622872602B0C5005B0143 /* DashboardViewController.swift */,
-				185850B92602CBE3002E5655 /* FavoritesViewController.swift */,
+				18502AB82613533800C761C6 /* ViewModel */,
+				18502ABA2613533F00C761C6 /* ViewController */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -147,8 +181,6 @@
 		18F622D32602B3F0005B0143 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				18502AB126134CD900C761C6 /* DashboardViewModel.swift */,
-				18502AAE26134BB800C761C6 /* LoginViewModel.swift */,
 				18F622D42602B3F0005B0143 /* Constants.swift */,
 				18F622D52602B3F0005B0143 /* Utilities.swift */,
 				18F622D62602B3F0005B0143 /* Extensions.swift */,
