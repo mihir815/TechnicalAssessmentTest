@@ -36,6 +36,7 @@ class LoginViewModel
                 }
             }
         }
+        finished(false)
     }
 }
 
