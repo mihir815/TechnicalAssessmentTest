@@ -18,6 +18,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     // cell reuse id (cells that scroll out of view can be reused)
     let cellReuseIdentifier = "cell"
 
+    private var viewModel: DashboardViewModel = DashboardViewModel()
+    
     // don't forget to hook this up from the storyboard
     @IBOutlet var tableView: UITableView!
 
@@ -79,61 +81,23 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         Utilities.showActivityIndicator()
         
-        let apiURL = Constants.environment.current.BASE_URL + Constants.API.posts
-      
-        var headers: HTTPHeaders = []
-        headers.add(name: "Accept", value: "*/*")
-        
-        AFWrapper.requestGET(apiURL, params: nil, headers: headers, success: { (statusCode, responseJson) in
-            
+        viewModel.fetch { [weak self] in
             Utilities.hideActivityIndicator()
             
-            self.postDataArray.removeAllObjects()
-            
-            if(statusCode == 200)
+            if(self?.viewModel.error == nil)
             {
-                var finalArray:[Any] = []
-                
-                print("Here response \(responseJson)")
-                
-                let responseArray = responseJson.array! as NSArray
-                
-                for post in responseArray
+                if(self?.viewModel.items.count != 0)
                 {
-                    let tempObject = JSON(post)
-                   
-                    let tempPostModel : PostDataModel = PostDataModel()
-                    tempPostModel.userId = tempObject["userId"].intValue
-                    tempPostModel.id = tempObject["id"].intValue
-                    tempPostModel.title = tempObject["title"].stringValue
-                    tempPostModel.body = tempObject["body"].stringValue
-                    
-                    print("tempPostModel.id \(tempPostModel.id) ==> \(tempPostModel.body!)")
-                    finalArray.append(tempPostModel)
+                    self?.postDataArray.addObjects(from: self?.viewModel.items as! [Any])
                 }
-                
-                if (finalArray.count > 0)
-                {
-                    let sortedArray = finalArray.sorted
-                    {
-                        ($0 as! PostDataModel).id < ($1 as! PostDataModel).id
-                     }
-                    self.postDataArray.addObjects(from: sortedArray)
-                }
-                self.tableView.emptyDataSetSource = self
-                self.tableView.emptyDataSetDelegate = self
-                self.tableView.reloadData()
-                self.tableView.reloadEmptyDataSet()
+                self?.tableView.emptyDataSetSource = self
+                self?.tableView.emptyDataSetDelegate = self
+                self?.tableView.reloadData()
+                self?.tableView.reloadEmptyDataSet()
             }
-            else
-            {
-                Utilities.hideActivityIndicator()
+            else{
                 Utilities.showAlertMessage(Constants.messages.unknownError)
             }
-            
-        }) { (error) in
-            Utilities.hideActivityIndicator()
-            Utilities.showAlertMessage(Constants.messages.unknownError)
         }
     }
 
@@ -172,9 +136,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     // method to run when table view cell is tapped
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

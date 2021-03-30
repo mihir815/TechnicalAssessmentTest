@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18502AAF26134BB800C761C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18502AAE26134BB800C761C6 /* LoginViewModel.swift */; };
+		18502AB226134CD900C761C6 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18502AB126134CD900C761C6 /* DashboardViewModel.swift */; };
 		185850BA2602CBE3002E5655 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850B82602CBE3002E5655 /* TabBarViewController.swift */; };
 		185850BB2602CBE3002E5655 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850B92602CBE3002E5655 /* FavoritesViewController.swift */; };
 		185B73D42602A4E8008A3519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B73D32602A4E8008A3519 /* AppDelegate.swift */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		13A571446F041BB0DD26B381 /* Pods-TechnicalAssessmentTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalAssessmentTest.release.xcconfig"; path = "Target Support Files/Pods-TechnicalAssessmentTest/Pods-TechnicalAssessmentTest.release.xcconfig"; sourceTree = "<group>"; };
+		18502AAE26134BB800C761C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		18502AB126134CD900C761C6 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		185850B82602CBE3002E5655 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		185850B92602CBE3002E5655 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		185B73D02602A4E8008A3519 /* TechnicalAssessmentTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TechnicalAssessmentTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,8 @@
 		18F622D32602B3F0005B0143 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18502AB126134CD900C761C6 /* DashboardViewModel.swift */,
+				18502AAE26134BB800C761C6 /* LoginViewModel.swift */,
 				18F622D42602B3F0005B0143 /* Constants.swift */,
 				18F622D52602B3F0005B0143 /* Utilities.swift */,
 				18F622D62602B3F0005B0143 /* Extensions.swift */,
@@ -336,10 +342,12 @@
 				185B73D82602A4E8008A3519 /* LoginViewController.swift in Sources */,
 				185B73DE2602A4E8008A3519 /* TechnicalAssessmentTest.xcdatamodeld in Sources */,
 				185B73D42602A4E8008A3519 /* AppDelegate.swift in Sources */,
+				18502AAF26134BB800C761C6 /* LoginViewModel.swift in Sources */,
 				18F622F22602B3F1005B0143 /* DateHelper.swift in Sources */,
 				18F622882602B0C6005B0143 /* DashboardViewController.swift in Sources */,
 				18F622F02602B3F1005B0143 /* Extensions.swift in Sources */,
 				18F622FE2602B3F1005B0143 /* PostDataModel.swift in Sources */,
+				18502AB226134CD900C761C6 /* DashboardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

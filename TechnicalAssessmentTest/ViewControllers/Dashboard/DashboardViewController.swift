@@ -18,6 +18,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     var postDataArray : NSMutableArray! = NSMutableArray()
     var filteredArray : NSMutableArray! = NSMutableArray()
     var searchBar = UISearchBar()
+    private var viewModel: DashboardViewModel = DashboardViewModel()
     
     // cell reuse id (cells that scroll out of view can be reused)
     let cellReuseIdentifier = "cell"
@@ -29,6 +30,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // MARK: -
     // MARK: Controller Lifecycle Methods
+    
     
     override func viewDidLoad()
     {
@@ -86,64 +88,25 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         
         Utilities.showActivityIndicator()
         
-        let apiURL = Constants.environment.current.BASE_URL + Constants.API.posts
-      
-        var headers: HTTPHeaders = []
-        headers.add(name: "Accept", value: "*/*")
-        
-        AFWrapper.requestGET(apiURL, params: nil, headers: headers, success: { (statusCode, responseJson) in
-            
+        viewModel.fetch { [weak self] in
             Utilities.hideActivityIndicator()
             
-            self.postDataArray.removeAllObjects()
-            self.filteredArray.removeAllObjects()
-            
-            if(statusCode == 200)
+            if(self?.viewModel.error == nil)
             {
-                var finalArray:[Any] = []
-                
-                print("Here response \(responseJson)")
-                
-                let responseArray = responseJson.array! as NSArray
-                
-                for post in responseArray
+                if(self?.viewModel.items.count != 0)
                 {
-                    let tempObject = JSON(post)
-                   
-                    let tempPostModel : PostDataModel = PostDataModel()
-                    tempPostModel.userId = tempObject["userId"].intValue
-                    tempPostModel.id = tempObject["id"].intValue
-                    tempPostModel.title = tempObject["title"].stringValue
-                    tempPostModel.body = tempObject["body"].stringValue
-                    
-                    print("tempPostModel.id \(tempPostModel.id) ==> \(tempPostModel.body!)")
-                    finalArray.append(tempPostModel)
+                    self?.postDataArray.addObjects(from: self?.viewModel.items as! [Any])
+                    self?.filteredArray.addObjects(from: self?.viewModel.items as! [Any])
+                    self?.initializeSearch()
                 }
-                
-                if (finalArray.count > 0)
-                {
-                    let sortedArray = finalArray.sorted
-                    {
-                        ($0 as! PostDataModel).id < ($1 as! PostDataModel).id
-                     }
-                    self.postDataArray.addObjects(from: sortedArray)
-                    self.filteredArray.addObjects(from: sortedArray)
-                    self.initializeSearch()
-                }
-                self.tableView.emptyDataSetSource = self
-                self.tableView.emptyDataSetDelegate = self
-                self.tableView.reloadData()
-                self.tableView.reloadEmptyDataSet()
+                self?.tableView.emptyDataSetSource = self
+                self?.tableView.emptyDataSetDelegate = self
+                self?.tableView.reloadData()
+                self?.tableView.reloadEmptyDataSet()
             }
-            else
-            {
-                Utilities.hideActivityIndicator()
+            else{
                 Utilities.showAlertMessage(Constants.messages.unknownError)
             }
-            
-        }) { (error) in
-            Utilities.hideActivityIndicator()
-            Utilities.showAlertMessage(Constants.messages.unknownError)
         }
     }
 
@@ -169,7 +132,6 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         let searchString = searchText.removeExtraSpaces()
-        print(searchString)
         
         let tempDataArray = self.filteredDataArray(with: self.postDataArray, query: searchString)
                     self.filteredArray.removeAllObjects()
@@ -178,18 +140,6 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         self.tableView.reloadData()
         self.tableView.reloadEmptyDataSet()
     }
-    
-//    func bindViewModel(){
-//        let query = searchBar.rx.text
-//            .orEmpty
-//            .distinctUntilChanged()
-//
-//        Observable.combineLatest(self.postDataArray, query) { [unowned self] (allContacts, query) -> NSMutableArray in
-//                return self.filteredContacts(with: allContacts, query: query)
-//            }
-//            .bind(to: tableView.rx.items(dataSource: dataSource))
-//            .disposed(by: disposeBag)
-//    }
     
     func filteredDataArray(with allPosts: NSMutableArray, query: String) -> NSMutableArray {
         guard !query.isEmpty else { return allPosts }
@@ -236,8 +186,6 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
 
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
